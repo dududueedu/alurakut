@@ -1,5 +1,6 @@
 import GridMain from '../src/components/GridMain'
 import Box from '../src/components/Box'
+import { AlurakutMenu } from '../src/libs/AluraCommons'
 
 function ProfileSideBar(props) {
   return (
@@ -13,17 +14,20 @@ export default function Home() {
   const githubUser = 'dududueedu'
 
   return (
-    <GridMain>
-      <div>
-        <ProfileSideBar User = {githubUser}/>
-      </div>
-      <div>
-        <Box style={{ gridArea: 'welcome' }}>Bem vindo</Box>
-      </div>
-      <div style={{ gridArea: 'profileRelations' }}>
-        <Box>Pessoas da comunidade</Box>
-        <Box>Comunidades</Box>
-      </div>
-    </GridMain>
+    <>
+      <AlurakutMenu />
+      <GridMain>
+        <div>
+          <ProfileSideBar User={githubUser} />
+        </div>
+        <div>
+          <Box style={{ gridArea: 'welcome' }}>Bem vindo</Box>
+        </div>
+        <div style={{ gridArea: 'profileRelations' }}>
+          <Box>Pessoas da comunidade</Box>
+          <Box>Comunidades</Box>
+        </div>
+      </GridMain>
+    </>
   )
 }
