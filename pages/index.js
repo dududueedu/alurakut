@@ -1,12 +1,22 @@
 import GridMain from '../src/components/GridMain'
 import Box from '../src/components/Box'
-import { AlurakutMenu, OrkutNostalgicIconSet } from '../src/libs/AluraCommons'
+import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/libs/AluraCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/css/ProfileRelations'
 
 function ProfileSideBar(props) {
   return (
     <Box className="profile" style={{ gridArea: 'profile' }}>
       <img className="myft" src={`https://github.com/${props.User}.png`} />
+      <hr />
+
+      <p>
+        <a className="boxLink" href={`https://github.com/${props.User}`} target="_blank">
+          @{props.User}
+        </a>
+      </p>
+      <hr />
+
+      <AlurakutProfileSidebarMenuDefault />
     </Box>
   )
 }
