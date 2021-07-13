@@ -1,13 +1,21 @@
 import GridMain from '../src/components/GridMain'
 import Box from '../src/components/Box'
 
+function ProfileSideBar(props) {
+  return (
+    <Box className="profile" style={{ gridArea: 'profile' }}>
+      <img className="myft" src={`https://github.com/${props.User}.png`} />
+    </Box>
+  )
+}
+
 export default function Home() {
+  const githubUser = 'dududueedu'
+
   return (
     <GridMain>
       <div>
-        <Box className="profile" style={{ gridArea: 'profile' }}>
-          <img className="myft" src="https://github.com/dududueedu.png" />
-        </Box>
+        <ProfileSideBar User = {githubUser}/>
       </div>
       <div>
         <Box style={{ gridArea: 'welcome' }}>Bem vindo</Box>
