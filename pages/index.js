@@ -2,7 +2,7 @@ import GridMain from '../src/components/GridMain'
 import Box from '../src/components/Box'
 import { AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet } from '../src/libs/AluraCommons'
 import { ProfileRelationsBoxWrapper } from '../src/components/css/ProfileRelations'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function ProfileSideBar(props) {
   return (
@@ -22,6 +22,27 @@ function ProfileSideBar(props) {
   )
 }
 
+function ProfileRelationsBox(propriedades) {
+  return (
+    <ProfileRelationsBoxWrapper>
+      <h2 className="smallTitle">
+        {propriedades.title} ({propriedades.items.length})
+      </h2>
+      <ul>
+        {/* {seguidores.map((itemAtual) => {
+          return (
+            <li key={itemAtual}>
+              <a href={`https://github.com/${itemAtual}.png`}>
+                <img src={itemAtual.image} />
+                <span>{itemAtual.title}</span>
+              </a>
+            </li>
+          )
+        })} */}
+      </ul>
+    </ProfileRelationsBoxWrapper>
+  )
+}
 export default function Home() {
   const githubUser = 'dududueedu'
 
@@ -38,11 +59,24 @@ export default function Home() {
     id: '40028922',
     title: 'Odeio acordar cedo!',
     image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
-  }]) //control state
+  }]) //control state qwe123qwe321CU
 
+  const [seguidores, setSeguidores] = useState([])
+  // 0 - Pegar o array de dados do github 
+  useEffect(function () {
+    fetch('https://api.github.com/users/dududueedu/followers')
+      .then(function (respostaDoServidor) {
+        return respostaDoServidor.json()
+      })
+      .then(function (respostaCompleta) {
+        setSeguidores(respostaCompleta)
+      })
+  }, [])
+
+  console.log('seguidores antes do return', seguidores)
   return (
     <>
-      <AlurakutMenu githubUser={githubUser}/>
+      <AlurakutMenu githubUser={githubUser} />
       <GridMain>
         <div className="profile" style={{ gridArea: 'profile' }}>
           <ProfileSideBar User={githubUser} />
@@ -93,11 +127,12 @@ export default function Home() {
           </Box>
         </div>
         <div style={{ gridArea: 'profileRelations' }}>
+          <ProfileRelationsBox title="Seguidores" items={seguidores} />
           <ProfileRelationsBoxWrapper>
             <h2 className="smallTitle"> Comunidades ({comunidades.length}) </h2>
             <ul>
               {comunidades.map((comunidad) => {
-                if (comunidades.length < 7){
+                if (comunidades.length < 7) {
                   return (
                     <li key={comunidad.id}>
                       <a href={`/users/${comunidad.title}`} target="_blank">
