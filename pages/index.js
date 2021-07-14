@@ -59,7 +59,7 @@ export default function Home() {
     id: '40028922',
     title: 'Odeio acordar cedo!',
     image: 'https://alurakut.vercel.app/capa-comunidade-01.jpg'
-  }]) //control state qwe123qwe321CU
+  }]) //control state
 
   const [seguidores, setSeguidores] = useState([])
   // 0 - Pegar o array de dados do github 
